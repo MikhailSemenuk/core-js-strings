@@ -152,9 +152,13 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeFirstOccurrences(str, value) {
-  // TODO: rewrite
-  // .indexOf
-  return str.replace(value, '');
+  // for test check should use indexOf, rewrite
+  // return str.replace(value, '');
+  const firstPosition = str.indexOf(value);
+  if (firstPosition === -1) {
+    return str;
+  }
+  return str.slice(0, firstPosition) + str.slice(firstPosition + value.length);
 }
 
 /**
@@ -169,8 +173,12 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeLastOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeLastOccurrences(str, value) {
+  const lastPosition = str.lastIndexOf(value);
+  if (lastPosition === -1) {
+    return str;
+  }
+  return str.slice(0, lastPosition) + str.slice(lastPosition + value.length);
 }
 
 /**
@@ -185,8 +193,15 @@ function removeLastOccurrences(/* str, value */) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+function sumOfCodes(str) {
+  if (typeof str !== 'string') {
+    return 0;
+  }
+  let answer = 0;
+  for (let index = 0; index < str.length; index += 1) {
+    answer += str.charCodeAt(index);
+  }
+  return answer;
 }
 
 /**
@@ -200,8 +215,8 @@ function sumOfCodes(/* str */) {
  *   startsWith('Hello World', 'World') => false
  *   startsWith('Hello World', 'Hello') => true
  */
-function startsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function startsWith(str, substr) {
+  return str.startsWith(substr);
 }
 
 /**
@@ -215,8 +230,8 @@ function startsWith(/* str, substr */) {
  *   endsWith('Hello World', 'World') => true
  *   endsWith('Hello World', 'Hello') => false
  */
-function endsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function endsWith(str, substr) {
+  return str.endsWith(substr);
 }
 
 /**
